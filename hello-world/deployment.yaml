@@ -32,7 +32,7 @@ spec:
             - name: CLOUDTRUTH_TEST_ENV
               valueFrom:
                 configMapKeyRef:
-                  name: cloudturth-poc
+                  name: cloudturth-pocx
                   key: test-env-var
             - name: MY_TEST_ENV
               value: "HELLO WORLD 3"
