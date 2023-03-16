@@ -4,7 +4,6 @@ metadata:
   name: hello-world
   labels:
     app: hello-world
-    release: "3"
 spec:
   type: ClusterIP
   ports:
@@ -14,4 +13,3 @@ spec:
       targetPort: deployment-port
   selector:
     app: hello-world
-    release: "3"
