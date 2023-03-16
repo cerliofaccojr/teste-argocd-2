@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: cloudturth-poc
 data:
-  test-env-var: "<TEST_FEATURE>"
+  test-env-var: "<test-feature>"

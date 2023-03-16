@@ -35,4 +35,4 @@ spec:
                   name: cloudturth-poc
                   key: test-env-var
             - name: MY_TEST_ENV
-              value: "HELLO WORLD 2"
+              value: "HELLO WORLD 3"
