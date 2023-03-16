@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      terminationGracePeriodSeconds: 180
+      imagePullSecrets:
+        - name: acr-auths
+      containers:
+        - name: hello-kubernetes
+          image: "paulbouwer/hello-kubernetes:1.10"
+          command: ["node", "-e", 'console.log(process.env.MY_TEST_ENV); console.log(process.env.CLOUDTRUTH_TEST_ENV);']
+          imagePullPolicy: Always
+          ports:
+            - name: deployment-port
+              containerPort: 8080
+          env:
+            - name: CLOUDTRUTH_TEST_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: cloudturth-poc
+                  key: test-env-var
+            - name: MY_TEST_ENV
+              value: "HELLO WORLD 2"
